@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: nexo
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/db}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:admin}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 25MB
+  #mail:
+    #host: ${MAIL_HOST}
+    #port: ${MAIL_PORT}
+    #username: ${MAIL_USERNAME}
+    #password: ${MAIL_PASSWORD}
+    #properties:
+      #mail:
+        #smtp:
+          #auth: true
+          #starttls:
+            #enable: true
+  #security:
+    #oauth2:
+      #client:
+        #registration:
+          #google:
+            #client-id: ${CLIENT_ID_GOOGLE}
+            #client-secret: ${CLIENT_SECRET_GOOGLE}
+#              - profile
+#              - email
+          #github:
+            #client-id: ${CLIENT_ID_GITHUB}
+            #client-secret: ${CLIENT_SECRET_GITHUB}
+            #scope:
+#              - read:user
+#              - user:email
+
+server:
+  servlet:
+    context-path: /nexo
+  error:
+    include-exception: false
+
+api:
+  security:
+    token:
+      secret: ${TOKEN_SECRET}
+      hours-expiration: 2
+
+storage:
+  uploads-dir: ${UPLOADS_DIR}
